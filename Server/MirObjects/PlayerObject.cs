@@ -55,7 +55,7 @@ namespace Server.MirObjects
             get { return Info.Direction; }
             set { Info.Direction = value; }
         }
-        public override byte Level
+        public override ushort Level
         {
             get { return Info.Level; }
             set { Info.Level = value; }
@@ -334,7 +334,7 @@ namespace Server.MirObjects
 
             Report = new Reporting(this);
 
-            if (Level == 255 || Account.AdminAccount)
+            if (Level >= 255 || Account.AdminAccount)
             {
                 IsGM = true;
                 SMain.Enqueue(string.Format("{0} is now a GM", Name));
@@ -3243,11 +3243,16 @@ namespace Server.MirObjects
                     case "LEVEL":
                         if (!IsGM || parts.Length < 2) return;
 
-                        byte level;
-                        byte old;
+                        ushort level;
+                        ushort old;
                         if (parts.Length >= 3)
                         {
-                            if (byte.TryParse(parts[2], out level))
+                            if (parts[2] == "-1")
+                            {
+                                parts[2] = ushort.MaxValue.ToString();
+                            }
+
+                            if (ushort.TryParse(parts[2], out level))
                             {
                                 if (level == 0) return;
                                 player = Envir.GetPlayer(parts[1]);
@@ -3263,7 +3268,12 @@ namespace Server.MirObjects
                         }
                         else
                         {
-                            if (byte.TryParse(parts[1], out level))
+                            if (parts[1] == "-1")
+                            {
+                                parts[1] = ushort.MaxValue.ToString();
+                            }
+
+                            if (ushort.TryParse(parts[1], out level))
                             {
                                 if (level == 0) return;
                                 old = Level;
@@ -3277,7 +3287,7 @@ namespace Server.MirObjects
                         }
 
                         ReceiveChat("Could not level player", ChatType.System);
-                        return;
+                        break;
 
                     case "MAKE":
                         if (!IsGM || parts.Length < 2) return;
@@ -8424,7 +8434,7 @@ namespace Server.MirObjects
                     }
                 }
             }
-            if (Level == 255) exp = byte.MaxValue;
+            if (Level >= 255) exp = byte.MaxValue;
 
             int oldLevel = magic.Level;
 

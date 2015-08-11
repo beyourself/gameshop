@@ -45,7 +45,7 @@ namespace Server.MirObjects
         public abstract Point CurrentLocation { get; set; }
         public abstract MirDirection Direction { get; set; }
         
-        public abstract byte Level { get; set; }
+        public abstract ushort Level { get; set; }
 
         public abstract uint Health { get; }
         public abstract uint MaxHealth { get; }

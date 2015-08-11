@@ -438,7 +438,7 @@ namespace ServerPackets
         public Color NameColour;
         public MirClass Class;
         public MirGender Gender;
-        public byte Level;
+        public ushort Level;
         public Point Location;
         public MirDirection Direction;
         public byte Hair;
@@ -466,7 +466,7 @@ namespace ServerPackets
             NameColour = Color.FromArgb(reader.ReadInt32());
             Class = (MirClass)reader.ReadByte();
             Gender = (MirGender)reader.ReadByte();
-            Level = reader.ReadByte();
+            Level = reader.ReadUInt16();
             Location = new Point(reader.ReadInt32(), reader.ReadInt32());
             Direction = (MirDirection)reader.ReadByte();
             Hair = reader.ReadByte();
@@ -639,7 +639,7 @@ namespace ServerPackets
         public Color NameColour;
         public MirClass Class;
         public MirGender Gender;
-        public byte Level;
+        public ushort Level;
         public Point Location;
         public MirDirection Direction;
         public byte Hair;
@@ -674,7 +674,7 @@ namespace ServerPackets
             NameColour = Color.FromArgb(reader.ReadInt32());
             Class = (MirClass)reader.ReadByte();
             Gender = (MirGender)reader.ReadByte();
-            Level = reader.ReadByte();
+            Level = reader.ReadUInt16();
             Location = new Point(reader.ReadInt32(), reader.ReadInt32());
             Direction = (MirDirection)reader.ReadByte();
             Hair = reader.ReadByte();
@@ -1356,7 +1356,7 @@ namespace ServerPackets
         public MirClass Class;
         public MirGender Gender;
         public byte Hair;
-        public byte Level;
+        public ushort Level;
         public string LoverName;
 
         protected override void ReadPacket(BinaryReader reader)
@@ -1374,7 +1374,7 @@ namespace ServerPackets
             Class = (MirClass)reader.ReadByte();
             Gender = (MirGender)reader.ReadByte();
             Hair = reader.ReadByte();
-            Level = reader.ReadByte();
+            Level = reader.ReadUInt16();
             LoverName = reader.ReadString();
         }
 
@@ -1435,12 +1435,12 @@ namespace ServerPackets
         public override short Index { get { return (short)ServerPacketIds.MentorRequest; } }
 
         public string Name;
-        public byte Level;
+        public ushort Level;
 
         protected override void ReadPacket(BinaryReader reader)
         {
             Name = reader.ReadString();
-            Level = reader.ReadByte();
+            Level = reader.ReadUInt16();
         }
         protected override void WritePacket(BinaryWriter writer)
         {
@@ -2108,12 +2108,12 @@ namespace ServerPackets
             get { return (short)ServerPacketIds.LevelChanged; }
         }
 
-        public byte Level;
+        public ushort Level;
         public long Experience, MaxExperience;
 
         protected override void ReadPacket(BinaryReader reader)
         {
-            Level = reader.ReadByte();
+            Level = reader.ReadUInt16();
             Experience = reader.ReadInt64();
             MaxExperience = reader.ReadInt64();
         }
@@ -4963,14 +4963,14 @@ namespace ServerPackets
         }
 
         public string Name;
-        public byte Level;
+        public ushort Level;
         public bool Online;
         public long MenteeEXP;
 
         protected override void ReadPacket(BinaryReader reader)
         {
             Name = reader.ReadString();
-            Level = reader.ReadByte();
+            Level = reader.ReadUInt16();
             Online = reader.ReadBoolean();
             MenteeEXP = reader.ReadInt64();
         }

@@ -5074,7 +5074,7 @@ namespace Client.MirScenes
 
         public MirControl NameInfoLabel(UserItem item, bool Inspect = false)
         {
-            byte level = Inspect ? InspectDialog.Level : MapObject.User.Level;
+            ushort level = Inspect ? InspectDialog.Level : MapObject.User.Level;
             MirClass job = Inspect ? InspectDialog.Class : MapObject.User.Class;
             HoverItem = item;
             ItemInfo realItem = Functions.GetRealItem(item.Info, level, job, ItemInfoList);
@@ -5186,7 +5186,7 @@ namespace Client.MirScenes
         }
         public MirControl AttackInfoLabel(UserItem item, bool Inspect = false)
         {
-            byte level = Inspect ? InspectDialog.Level : MapObject.User.Level;
+            ushort level = Inspect ? InspectDialog.Level : MapObject.User.Level;
             MirClass job = Inspect ? InspectDialog.Class : MapObject.User.Class;
             HoverItem = item;
             ItemInfo realItem = Functions.GetRealItem(item.Info, level, job, ItemInfoList);
@@ -5647,7 +5647,7 @@ namespace Client.MirScenes
         }
         public MirControl DefenseInfoLabel(UserItem item, bool Inspect = false)
         {
-            byte level = Inspect ? InspectDialog.Level : MapObject.User.Level;
+            ushort level = Inspect ? InspectDialog.Level : MapObject.User.Level;
             MirClass job = Inspect ? InspectDialog.Class : MapObject.User.Class;
             HoverItem = item;
             ItemInfo realItem = Functions.GetRealItem(item.Info, level, job, ItemInfoList);
@@ -6138,7 +6138,7 @@ namespace Client.MirScenes
         }
         public MirControl WeightInfoLabel(UserItem item, bool Inspect = false)
         {
-            byte level = Inspect ? InspectDialog.Level : MapObject.User.Level;
+            ushort level = Inspect ? InspectDialog.Level : MapObject.User.Level;
             MirClass job = Inspect ? InspectDialog.Class : MapObject.User.Class;
             HoverItem = item;
             ItemInfo realItem = Functions.GetRealItem(item.Info, level, job, ItemInfoList);
@@ -6321,7 +6321,7 @@ namespace Client.MirScenes
         }
         public MirControl AwakeInfoLabel(UserItem item, bool Inspect = false)
         {
-            byte level = Inspect ? InspectDialog.Level : MapObject.User.Level;
+            ushort level = Inspect ? InspectDialog.Level : MapObject.User.Level;
             MirClass job = Inspect ? InspectDialog.Class : MapObject.User.Class;
             HoverItem = item;
             ItemInfo realItem = Functions.GetRealItem(item.Info, level, job, ItemInfoList);
@@ -6421,7 +6421,7 @@ namespace Client.MirScenes
         }
         public MirControl NeedInfoLabel(UserItem item, bool Inspect = false)
         {
-            byte level = Inspect ? InspectDialog.Level : MapObject.User.Level;
+            ushort level = Inspect ? InspectDialog.Level : MapObject.User.Level;
             MirClass job = Inspect ? InspectDialog.Class : MapObject.User.Class;
             HoverItem = item;
             ItemInfo realItem = Functions.GetRealItem(item.Info, level, job, ItemInfoList);
@@ -6563,7 +6563,7 @@ namespace Client.MirScenes
         }
         public MirControl BindInfoLabel(UserItem item, bool Inspect = false)
         {
-            byte level = Inspect ? InspectDialog.Level : MapObject.User.Level;
+            ushort level = Inspect ? InspectDialog.Level : MapObject.User.Level;
             MirClass job = Inspect ? InspectDialog.Class : MapObject.User.Class;
             HoverItem = item;
             ItemInfo realItem = Functions.GetRealItem(item.Info, level, job, ItemInfoList);
@@ -7124,7 +7124,7 @@ namespace Client.MirScenes
         }
         public MirControl OverlapInfoLabel(UserItem item, bool Inspect = false)
         {
-            byte level = Inspect ? InspectDialog.Level : MapObject.User.Level;
+            ushort level = Inspect ? InspectDialog.Level : MapObject.User.Level;
             MirClass job = Inspect ? InspectDialog.Class : MapObject.User.Class;
             HoverItem = item;
             ItemInfo realItem = Functions.GetRealItem(item.Info, level, job, ItemInfoList);
@@ -7219,7 +7219,7 @@ namespace Client.MirScenes
         }
         public MirControl StoryInfoLabel(UserItem item, bool Inspect = false)
         {
-            byte level = Inspect ? InspectDialog.Level : MapObject.User.Level;
+            ushort level = Inspect ? InspectDialog.Level : MapObject.User.Level;
             MirClass job = Inspect ? InspectDialog.Class : MapObject.User.Class;
             HoverItem = item;
             ItemInfo realItem = Functions.GetRealItem(item.Info, level, job, ItemInfoList);
@@ -7318,7 +7318,7 @@ namespace Client.MirScenes
             }
 
             if (item == HoverItem && ItemLabel != null && !ItemLabel.IsDisposed) return;
-            byte level = Inspect ? InspectDialog.Level : MapObject.User.Level;
+            ushort level = Inspect ? InspectDialog.Level : MapObject.User.Level;
             MirClass job = Inspect ? InspectDialog.Class : MapObject.User.Class;
             HoverItem = item;
             ItemInfo realItem = Functions.GetRealItem(item.Info, level, job, ItemInfoList);
@@ -12344,7 +12344,7 @@ namespace Client.MirScenes
         public MirClass Class;
         public MirGender Gender;
         public byte Hair;
-        public byte Level;
+        public ushort Level;
         public string LoverName;
 
         public MirButton CloseButton, GroupButton, FriendButton, MailButton, TradeButton, LoverButton;
@@ -21157,7 +21157,7 @@ namespace Client.MirScenes
         public MirLabel MentorNameLabel, MentorLevelLabel, MentorOnlineLabel, StudentNameLabel, StudentLevelLabel, StudentOnlineLabel, MentorLabel, StudentLabel, MenteeEXPLabel;
 
         public string MentorName;
-        public byte MentorLevel;
+        public ushort MentorLevel;
         public bool MentorOnline;
         public long MenteeEXP;
 

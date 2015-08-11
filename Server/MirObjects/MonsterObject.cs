@@ -173,7 +173,7 @@ namespace Server.MirObjects
         public override int CurrentMapIndex { get; set; }
         public override Point CurrentLocation { get; set; }
         public override sealed MirDirection Direction { get; set; }
-        public override byte Level
+        public override ushort Level
         {
             get { return Info.Level; }
             set { throw new NotSupportedException(); }
@@ -1764,7 +1764,7 @@ namespace Server.MirObjects
             if (EXPOwner == attacker)
                 EXPOwnerTime = Envir.Time + EXPOwnerDelay;
 
-            byte LevelOffset = (byte)(Level > attacker.Level ? 0 : Math.Min(10, attacker.Level - Level));
+            ushort LevelOffset = (ushort)(Level > attacker.Level ? 0 : Math.Min(10, attacker.Level - Level));
 
             if (attacker.HasParalysisRing && type != DefenceType.MAC && type != DefenceType.MACAgility && 1 == Envir.Random.Next(1, 15))
             {
