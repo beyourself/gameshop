@@ -33,7 +33,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\Mir 2\Server\</OutputPath>
+    <OutputPath>..\..\..\Mir 2\Server\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -340,6 +340,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MirForms\ConfigForm.resx">
       <DependentUpon>ConfigForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MirForms\Database\GameShop.resx">
+      <DependentUpon>GameShop.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MirForms\Database\MagicInfoForm.resx">
       <DependentUpon>MagicInfoForm.cs</DependentUpon>

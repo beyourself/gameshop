@@ -3076,6 +3076,55 @@ public class UserItem
     }
 }
 
+public class GameShopItem
+{
+    public int ItemIndex;
+    public ItemInfo Info;
+    public string Name;
+    public long GoldPrice = 0;
+    public long GPPrice = 0;
+    public byte Quantity = 0;
+    public byte TotalQuantity = 0;
+    public string Class = "";
+    public string Catagory = "";
+    public bool PagePriority = true;
+
+
+    public GameShopItem()
+    {
+    }
+
+    public GameShopItem(BinaryReader reader, int version = int.MaxValue, int Customversion = int.MaxValue)
+    {
+        ItemIndex = reader.ReadInt32();
+        GoldPrice = reader.ReadInt64();
+        GPPrice = reader.ReadInt64();
+        Quantity = reader.ReadByte();
+        TotalQuantity = reader.ReadByte();
+        Class = reader.ReadString();
+        Catagory = reader.ReadString();
+        PagePriority = reader.ReadBoolean();
+    }
+
+    public void Save(BinaryWriter writer)
+    {
+        writer.Write(ItemIndex);
+
+        writer.Write(GoldPrice);
+        writer.Write(GPPrice);
+        writer.Write(Quantity);
+        writer.Write(TotalQuantity);
+        writer.Write(Class);
+        writer.Write(Catagory);
+        writer.Write(PagePriority);
+    }
+
+    public override string ToString()
+    {
+        return string.Format("{0}: {1}", ItemIndex, Name);
+    }
+}
+
 public class Awake
 {
     //Awake Option

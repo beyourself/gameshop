@@ -120,6 +120,7 @@ namespace Server.MirEnvir
         public LinkedList<AuctionInfo> Auctions = new LinkedList<AuctionInfo>();
         public int GuildCount, NextGuildID;
         public List<GuildObject> GuildList = new List<GuildObject>();
+        public List<GameShopItem> GameShopInfoList = new List<GameShopItem>();
 
         //Live Info
         public List<Map> MapList = new List<Map>();
@@ -725,6 +726,10 @@ namespace Server.MirEnvir
                 writer.Write(MagicInfoList.Count);
                 for (int i = 0; i < MagicInfoList.Count; i++)
                     MagicInfoList[i].Save(writer);
+
+                writer.Write(GameShopInfoList.Count);
+                for (int i = 0; i < GameShopInfoList.Count; i++)
+                    GameShopInfoList[i].Save(writer);
             }
         }
         public void SaveAccounts()
@@ -980,6 +985,21 @@ namespace Server.MirEnvir
                             MagicInfoList.Add(new MagicInfo(reader));
                     }
                     FillMagicInfoList();
+
+
+                    if (LoadVersion >= 61)
+                    {
+                        count = reader.ReadInt32();
+                        GameShopInfoList.Clear();
+                        for (int i = 0; i < count; i++)
+                        {
+                            GameShopItem item = new GameShopItem(reader, LoadVersion, LoadCustomVersion);
+                            if (SMain.Envir.BindGameShop(item))
+                            {
+                                GameShopInfoList.Add(item);
+                            }
+                        }
+                    }
                 }
                 Settings.LinkGuildCreationItems(ItemInfoList);
             }
@@ -1815,6 +1835,11 @@ namespace Server.MirEnvir
             QuestInfoList.Add(new QuestInfo { Index = ++QuestIndex });
         }
 
+        public void AddToGameShop(int ItemIndex = 0, ItemInfo Info = null)
+        {
+            GameShopInfoList.Add(new GameShopItem { GoldPrice = 500, GPPrice = 400, ItemIndex = ItemIndex, Info = Info });
+        }
+
         public void Remove(MapInfo info)
         {
             MapInfoList.Remove(info);
@@ -1918,6 +1943,19 @@ namespace Server.MirEnvir
                 item.Info = info;
 
                 return BindSlotItems(item);
+            }
+            return false;
+        }
+
+        public bool BindGameShop(GameShopItem item, bool EditEnvir = true)
+        {
+            for (int i = 0; i < SMain.EditEnvir.ItemInfoList.Count; i++)
+            {
+                ItemInfo info = SMain.EditEnvir.ItemInfoList[i];
+                if (info.Index != item.ItemIndex) continue;
+                item.Info = info;
+                item.Name = info.FriendlyName;
+                return true;
             }
             return false;
         }

@@ -349,6 +349,12 @@ namespace Server
             form.ShowDialog();
         }
 
+        private void gameshopToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GameShop form = new GameShop();
+            form.ShowDialog();
+        }
+
         private void SMain_Load(object sender, EventArgs e)
         {
             EditEnvir.LoadDB();
